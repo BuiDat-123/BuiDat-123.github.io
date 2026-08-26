@@ -1,259 +1,668 @@
 <style>
-/* ===== ĐĂNG KÝ TƯ VẤN - POPUP ===== */
-#dvdtConsultPopup{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:9999999;
-  background:rgba(0,0,0,.55);
-  padding:30px 15px;
-  overflow:auto;
-  box-sizing:border-box;
+/* =========================================================
+   DICHVUDIENTU - POPUP ĐĂNG KÝ TƯ VẤN
+   Không chuyển trang - Không mở Google Form
+   ========================================================= */
+
+#dvdt-contact-popup{
+    display:none;
+    position:fixed;
+    z-index:999999999;
+    inset:0;
+    background:#fff;
+    overflow-y:auto;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-#dvdtConsultBox{
-  position:relative;
-  width:100%;
-  max-width:760px;
-  margin:20px auto;
-  background:#fff;
-  border-radius:8px;
-  padding:35px 40px;
-  box-sizing:border-box;
-  box-shadow:0 15px 50px rgba(0,0,0,.25);
-  font-family:Arial,sans-serif;
+#dvdt-contact-popup.active{
+    display:block;
 }
 
-#dvdtConsultClose{
-  position:absolute;
-  top:12px;
-  right:18px;
-  border:0;
-  background:none;
-  font-size:32px;
-  color:#777;
-  cursor:pointer;
+/* Nút đóng */
+#dvdt-contact-close{
+    position:fixed;
+    top:18px;
+    right:28px;
+    z-index:1000000000;
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:50%;
+    background:#ed1c24;
+    color:#fff;
+    font-size:30px;
+    line-height:42px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 3px 12px rgba(0,0,0,.2);
 }
 
-#dvdtConsultBox h2{
-  margin:0 0 10px;
-  text-align:center;
-  color:#003b63;
-  font-size:30px;
+#dvdt-contact-close:hover{
+    background:#c9151c;
 }
 
-#dvdtConsultBox .dvdt-desc{
-  text-align:center;
-  color:#666;
-  margin-bottom:28px;
-  font-size:15px;
+/* Banner giống trang Liên hệ */
+.dvdt-contact-banner{
+    height:140px;
+    background:
+        linear-gradient(rgba(4,28,50,.88),rgba(4,28,50,.88)),
+        url("https://www.dichvudientu.com/") center/cover;
+    display:flex;
+    align-items:center;
 }
 
-.dvdt-input{
-  margin-bottom:17px;
+.dvdt-contact-banner-inner{
+    width:1100px;
+    max-width:calc(100% - 40px);
+    margin:auto;
 }
 
-.dvdt-input label{
-  display:block;
-  margin-bottom:7px;
-  font-weight:600;
-  color:#222;
+.dvdt-contact-banner h1{
+    margin:0;
+    color:#fff;
+    font-size:42px;
+    font-weight:400;
 }
 
-.dvdt-input input,
-.dvdt-input select,
-.dvdt-input textarea{
-  width:100%;
-  box-sizing:border-box;
-  border:1px solid #d5d5d5;
-  border-radius:5px;
-  padding:12px 13px;
-  font-size:15px;
-  background:#fff;
+/* Nội dung */
+.dvdt-contact-content{
+    max-width:1200px;
+    margin:0 auto;
+    padding:55px 30px 70px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
 }
 
-.dvdt-input textarea{
-  height:110px;
-  resize:vertical;
+/* Bên trái */
+.dvdt-contact-left h3{
+    margin:0 0 25px;
+    color:#666;
+    font-size:25px;
+    font-weight:400;
 }
 
-#dvdtConsultSubmit{
-  display:block;
-  border:0;
-  border-radius:5px;
-  background:#ed1c24;
-  color:#fff;
-  padding:12px 28px;
-  font-size:15px;
-  font-weight:600;
-  cursor:pointer;
+.dvdt-company{
+    color:#555;
+    font-size:24px;
+    line-height:1.65;
+    margin-bottom:22px;
 }
 
-#dvdtConsultSubmit:hover{
-  background:#c9151c;
+.dvdt-contact-info{
+    font-size:16px;
+    color:#333;
+    line-height:1.9;
 }
 
-@media(max-width:600px){
-  #dvdtConsultBox{
-    padding:30px 20px;
-  }
+.dvdt-contact-info div{
+    margin-bottom:2px;
+}
+
+.dvdt-contact-info strong{
+    color:#063b63;
+}
+
+.dvdt-contact-info a{
+    color:#063b63;
+    text-decoration:none;
+}
+
+/* Bên phải */
+.dvdt-contact-right > p{
+    margin:0 0 25px;
+    color:#666;
+    font-size:16px;
+    line-height:1.65;
+}
+
+.dvdt-form-row{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    align-items:center;
+    margin-bottom:16px;
+}
+
+.dvdt-form-row label{
+    font-size:16px;
+    font-weight:700;
+    color:#111;
+}
+
+.dvdt-form-row input,
+.dvdt-form-row textarea,
+.dvdt-form-row select{
+    width:100%;
+    height:58px;
+    padding:0 12px;
+    border:1px solid #d8d8d8;
+    border-radius:6px;
+    background:#fff;
+    font-size:16px;
+    color:#555;
+    outline:none;
+    box-sizing:border-box;
+}
+
+.dvdt-form-row textarea{
+    height:82px;
+    padding-top:12px;
+    resize:vertical;
+}
+
+.dvdt-form-row input:focus,
+.dvdt-form-row textarea:focus,
+.dvdt-form-row select:focus{
+    border-color:#063b63;
+}
+
+.dvdt-form-full{
+    margin-bottom:16px;
+}
+
+.dvdt-form-full label{
+    display:block;
+    margin-bottom:9px;
+    font-size:16px;
+    font-weight:700;
+    color:#111;
+}
+
+.dvdt-form-full select{
+    width:100%;
+    height:58px;
+    padding:0 12px;
+    border:1px solid #d8d8d8;
+    border-radius:6px;
+    font-size:16px;
+    color:#555;
+    background:#fff;
+}
+
+#dvdt-contact-submit{
+    margin-left:180px;
+    border:0;
+    background:#ed1c24;
+    color:#fff;
+    border-radius:6px;
+    padding:11px 20px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+#dvdt-contact-submit:hover{
+    background:#d71920;
+}
+
+/* Ẩn hoàn toàn Google Form cũ */
+iframe[src*="docs.google.com/forms"],
+iframe[src*="google.com/forms"]{
+    display:none !important;
+}
+
+/* Mobile */
+@media(max-width:850px){
+
+    .dvdt-contact-content{
+        grid-template-columns:1fr;
+        gap:40px;
+        padding:40px 20px 60px;
+    }
+
+    .dvdt-contact-banner{
+        height:110px;
+    }
+
+    .dvdt-contact-banner h1{
+        font-size:32px;
+    }
+
+    .dvdt-form-row{
+        display:block;
+    }
+
+    .dvdt-form-row label{
+        display:block;
+        margin-bottom:8px;
+    }
+
+    #dvdt-contact-submit{
+        margin-left:0;
+    }
+
+    .dvdt-company{
+        font-size:21px;
+    }
+}
+
+@media(max-width:500px){
+
+    #dvdt-contact-close{
+        top:10px;
+        right:12px;
+        width:38px;
+        height:38px;
+        line-height:38px;
+        font-size:27px;
+    }
+
+    .dvdt-contact-content{
+        padding:30px 15px 50px;
+    }
+
+    .dvdt-contact-banner-inner{
+        max-width:calc(100% - 30px);
+    }
 }
 </style>
 
-<div id="dvdtConsultPopup">
-  <div id="dvdtConsultBox">
 
-    <button type="button" id="dvdtConsultClose">×</button>
+<!-- =========================================================
+     POPUP LIÊN HỆ
+     ========================================================= -->
 
-    <h2>Đăng ký tư vấn</h2>
+<div id="dvdt-contact-popup">
 
-    <div class="dvdt-desc">
-      Hãy để lại thông tin và nhu cầu của bạn. Chúng tôi sẽ liên hệ tư vấn trong thời gian sớm nhất.
+    <button type="button" id="dvdt-contact-close">×</button>
+
+    <!-- Banner -->
+    <div class="dvdt-contact-banner">
+        <div class="dvdt-contact-banner-inner">
+            <h1>Đăng ký tư vấn</h1>
+        </div>
     </div>
 
-    <form id="dvdtConsultForm">
 
-      <div class="dvdt-input">
-        <label>Họ và tên *</label>
-        <input type="text" name="name" placeholder="Nhập họ và tên" required>
-      </div>
+    <!-- Nội dung -->
+    <div class="dvdt-contact-content">
 
-      <div class="dvdt-input">
-        <label>Số điện thoại *</label>
-        <input type="tel" name="phone" placeholder="Nhập số điện thoại" required>
-      </div>
+        <!-- THÔNG TIN BÊN TRÁI -->
+        <div class="dvdt-contact-left">
 
-      <div class="dvdt-input">
-        <label>Email *</label>
-        <input type="email" name="email" placeholder="Nhập email" required>
-      </div>
+            <h3>THÔNG TIN LIÊN HỆ</h3>
 
-      <div class="dvdt-input">
-        <label>Tiêu đề *</label>
-        <input type="text" name="subject" required>
-      </div>
+            <div class="dvdt-company">
+                DỊCH VỤ ĐIỆN TỬ
+            </div>
 
-      <div class="dvdt-input">
-        <label>Sản phẩm / Dịch vụ</label>
-        <select name="service">
-          <option value="">-- Chọn dịch vụ --</option>
-          <option>Kế toán - Thuế trọn gói</option>
-          <option>Tư vấn thuế</option>
-          <option>Hóa đơn điện tử</option>
-          <option>Chữ ký số</option>
-          <option>Thành lập doanh nghiệp</option>
-          <option>Thay đổi nội dung giấy phép</option>
-          <option>Tạm ngưng doanh nghiệp</option>
-          <option>Giải thể doanh nghiệp</option>
-          <option>Xin hoạt động lại doanh nghiệp</option>
-          <option>Hợp đồng điện tử</option>
-          <option>Hồ sơ doanh nghiệp</option>
-          <option>Dịch vụ khác</option>
-        </select>
-      </div>
+            <div class="dvdt-contact-info">
 
-      <div class="dvdt-input">
-        <label>Nội dung cần tư vấn</label>
-        <textarea name="message"></textarea>
-      </div>
+                <div>
+                    📍 <strong>Địa chỉ:</strong>
+                    Việt Nam
+                </div>
 
-      <button type="submit" id="dvdtConsultSubmit">GỬI</button>
+                <div>
+                    ☎ <strong>Phone:</strong>
+                    <a href="tel:0852233247">
+                        0852 233 247
+                    </a>
+                </div>
 
-    </form>
+                <div>
+                    ✉ <strong>Email:</strong>
+                    <a href="mailto:datbv@dichvudientu.com">
+                        datbv@dichvudientu.com
+                    </a>
+                </div>
 
-  </div>
+                <div>
+                    🔎 <strong>Website:</strong>
+                    dichvudientu.com
+                </div>
+
+                <div>
+                    🕘 <strong>Thời gian hỗ trợ:</strong>
+                    24/7
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORM BÊN PHẢI -->
+        <div class="dvdt-contact-right">
+
+            <p>
+                Hãy liên hệ khi bạn gặp bất cứ vấn đề nào liên quan
+                đến công ty hoặc dịch vụ của chúng tôi.<br>
+                Chúng tôi sẽ cố gắng phản hồi trong thời gian sớm nhất.
+            </p>
+
+            <form id="dvdt-consult-form">
+
+                <div class="dvdt-form-row">
+                    <label>Tên *</label>
+                    <input
+                        type="text"
+                        name="name"
+                        required
+                    >
+                </div>
+
+                <div class="dvdt-form-row">
+                    <label>Số điện thoại</label>
+                    <input
+                        type="tel"
+                        name="phone"
+                    >
+                </div>
+
+                <div class="dvdt-form-row">
+                    <label>Email *</label>
+                    <input
+                        type="email"
+                        name="email"
+                        required
+                    >
+                </div>
+
+                <div class="dvdt-form-row">
+                    <label>Tiêu đề *</label>
+                    <input
+                        type="text"
+                        name="subject"
+                        value="Liên hệ"
+                        required
+                    >
+                </div>
+
+                <div class="dvdt-form-full">
+                    <label>Sản phẩm/Dịch vụ</label>
+
+                    <select name="service">
+
+                        <option>
+                            Dịch vụ rủi ro về thuế
+                        </option>
+
+                        <option>
+                            Kế toán - Thuế trọn gói
+                        </option>
+
+                        <option>
+                            Tư vấn thuế
+                        </option>
+
+                        <option>
+                            Hóa đơn điện tử
+                        </option>
+
+                        <option>
+                            Chữ ký số
+                        </option>
+
+                        <option>
+                            Thành lập doanh nghiệp
+                        </option>
+
+                        <option>
+                            Thay đổi nội dung giấy phép
+                        </option>
+
+                        <option>
+                            Tạm ngưng doanh nghiệp
+                        </option>
+
+                        <option>
+                            Giải thể doanh nghiệp
+                        </option>
+
+                        <option>
+                            Xin hoạt động lại doanh nghiệp
+                        </option>
+
+                        <option>
+                            Hợp đồng điện tử
+                        </option>
+
+                        <option>
+                            Hồ sơ doanh nghiệp
+                        </option>
+
+                    </select>
+                </div>
+
+
+                <div class="dvdt-form-row">
+                    <label>Mô tả chi tiết</label>
+
+                    <textarea
+                        name="message"
+                    ></textarea>
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="dvdt-contact-submit"
+                >
+                    Gửi
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
 </div>
+
 
 <script>
 (function(){
 
-  var popup = document.getElementById("dvdtConsultPopup");
-  var close = document.getElementById("dvdtConsultClose");
+    "use strict";
 
-  function openConsult(){
-    popup.style.display = "block";
-    document.body.style.overflow = "hidden";
-  }
+    var popup =
+        document.getElementById("dvdt-contact-popup");
 
-  function closeConsult(){
-    popup.style.display = "none";
-    document.body.style.overflow = "";
-  }
+    var closeButton =
+        document.getElementById("dvdt-contact-close");
 
-  /*
-   * CHẶN LINK/ NÚT ĐĂNG KÝ TƯ VẤN
-   * Không cho chuyển sang Google Form.
-   */
-  document.addEventListener("click", function(e){
 
-    var el = e.target.closest("a,button");
+    /* ==========================================
+       MỞ POPUP
+       ========================================== */
 
-    if(!el) return;
+    function openConsultPopup(){
 
-    var text = (
-      el.innerText ||
-      el.textContent ||
-      el.getAttribute("aria-label") ||
-      ""
-    ).trim().toLowerCase();
+        popup.classList.add("active");
 
-    if(
-      text === "đăng ký tư vấn" ||
-      text === "đăng kí tư vấn" ||
-      text.indexOf("đăng ký tư vấn") !== -1 ||
-      text.indexOf("đăng kí tư vấn") !== -1
-    ){
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
+        document.body.style.overflow = "hidden";
 
-      openConsult();
-
-      return false;
     }
 
-  }, true);
 
-  close.onclick = closeConsult;
+    /* ==========================================
+       ĐÓNG POPUP
+       ========================================== */
 
-  popup.onclick = function(e){
-    if(e.target === popup){
-      closeConsult();
+    function closeConsultPopup(){
+
+        popup.classList.remove("active");
+
+        document.body.style.overflow = "";
+
     }
-  };
 
-  document.addEventListener("keydown",function(e){
-    if(e.key === "Escape"){
-      closeConsult();
+
+    /* ==========================================
+       BẮT TẤT CẢ NÚT "ĐĂNG KÝ TƯ VẤN"
+       ========================================== */
+
+    document.addEventListener(
+        "click",
+        function(e){
+
+            var target =
+                e.target.closest("a,button");
+
+            if(!target) return;
+
+
+            var text =
+                (
+                    target.innerText ||
+                    target.textContent ||
+                    ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if(
+                text.indexOf("đăng ký tư vấn") !== -1 ||
+                text.indexOf("đăng kí tư vấn") !== -1 ||
+                text.indexOf("dang ky tu van") !== -1
+            ){
+
+                /*
+                 * QUAN TRỌNG:
+                 * Chặn hoàn toàn link cũ.
+                 */
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+
+
+                /*
+                 * Không cho trình duyệt chuyển
+                 * sang Google Form.
+                 */
+                openConsultPopup();
+
+                return false;
+            }
+
+        },
+        true
+    );
+
+
+    /* ==========================================
+       NÚT X
+       ========================================== */
+
+    closeButton.addEventListener(
+        "click",
+        function(){
+
+            closeConsultPopup();
+
+        }
+    );
+
+
+    /* ==========================================
+       BẤM RA NGOÀI ĐỂ ĐÓNG
+       ========================================== */
+
+    popup.addEventListener(
+        "click",
+        function(e){
+
+            if(e.target === popup){
+
+                closeConsultPopup();
+
+            }
+
+        }
+    );
+
+
+    /* ==========================================
+       PHÍM ESC
+       ========================================== */
+
+    document.addEventListener(
+        "keydown",
+        function(e){
+
+            if(e.key === "Escape"){
+
+                closeConsultPopup();
+
+            }
+
+        }
+    );
+
+
+    /* ==========================================
+       KHÔNG CHO GOOGLE FORM HIỆN RA
+       ========================================== */
+
+    function hideOldGoogleForm(){
+
+        document.querySelectorAll(
+            'iframe[src*="docs.google.com/forms"], iframe[src*="google.com/forms"]'
+        ).forEach(function(frame){
+
+            frame.style.setProperty(
+                "display",
+                "none",
+                "important"
+            );
+
+        });
+
     }
-  });
 
-  /*
-   * CHẶN GOOGLE FORM CŨ NẾU WEBSITE CỐ MỞ NÓ
-   */
-  var observer = new MutationObserver(function(){
 
-    document.querySelectorAll(
-      'iframe[src*="docs.google.com/forms"],iframe[src*="google.com/forms"]'
-    ).forEach(function(frame){
+    hideOldGoogleForm();
 
-      var parent = frame.closest(
-        '.modal,[role="dialog"],.popup'
-      );
 
-      if(parent){
-        parent.style.display = "none";
-      }
+    /*
+     * Nếu website cũ tự chèn Google Form
+     * thì tiếp tục ẩn nó.
+     */
+    var observer =
+        new MutationObserver(
+            function(){
 
-      frame.style.display = "none";
-    });
+                hideOldGoogleForm();
 
-  });
+            }
+        );
 
-  observer.observe(document.documentElement,{
-    childList:true,
-    subtree:true
-  });
+
+    observer.observe(
+        document.documentElement,
+        {
+            childList:true,
+            subtree:true
+        }
+    );
+
+
+    /* ==========================================
+       FORM
+       ========================================== */
+
+    document
+        .getElementById("dvdt-consult-form")
+        .addEventListener(
+            "submit",
+            function(e){
+
+                e.preventDefault();
+
+                /*
+                 * Phần giao diện đã hoàn tất.
+                 *
+                 * Không chuyển sang Google Form.
+                 * Không mở trang khác.
+                 */
+
+                alert(
+                    "Thông tin của bạn đã được tiếp nhận. Chúng tôi sẽ liên hệ lại sớm nhất."
+                );
+
+            }
+        );
 
 })();
 </script>
