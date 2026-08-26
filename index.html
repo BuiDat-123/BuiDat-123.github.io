@@ -1,235 +1,472 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dịch Vụ Điện Tử | Dịch vụ doanh nghiệp - kế toán thuế</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;color:#1f2937;background:#f5f7fa;line-height:1.6}
-body.modal-open{overflow:hidden}
-header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:1000}
-.navbar{max-width:1200px;margin:auto;min-height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
-.logo{font-size:22px;font-weight:800;color:#124e78;text-decoration:none}
-.nav-menu{display:flex;align-items:center;gap:5px;list-style:none}
-.nav-menu li{position:relative}
-.nav-menu>li>a{display:block;padding:25px 14px;color:#1f2937;text-decoration:none;font-weight:600;font-size:14px}
-.nav-menu>li>a:hover{color:#1261a0}
-.dropdown-menu{display:none;position:absolute;top:100%;left:0;width:330px;background:#fff;border:1px solid #e5e7eb;box-shadow:0 12px 30px rgba(0,0,0,.12);border-radius:0 0 10px 10px;padding:12px 0}
-.dropdown:hover .dropdown-menu{display:block}
-.dropdown-title{padding:10px 18px 5px;color:#1261a0;font-weight:800;font-size:13px}
-.dropdown-menu a{display:block;padding:9px 18px;color:#374151;text-decoration:none;font-size:14px}
-.dropdown-menu a:hover{background:#f0f6fb;color:#1261a0}
-.consult-btn{background:#1261a0!important;color:#fff!important;border-radius:7px;margin-left:5px}
-.hero{min-height:570px;display:flex;align-items:center;background:linear-gradient(135deg,#0b4168,#1261a0,#1883bd)}
-.hero-content{max-width:1200px;width:100%;margin:auto;padding:80px 20px;color:#fff}
-.hero h1{font-size:52px;max-width:750px;line-height:1.15;margin-bottom:22px}
-.hero p{max-width:700px;font-size:20px;margin-bottom:30px;color:#edf5fa}
-.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-block;padding:14px 25px;border-radius:7px;text-decoration:none;font-weight:700}
-.btn-primary{background:#fff;color:#1261a0}
-.btn-secondary{border:1px solid #fff;color:#fff}
-.container{max-width:1200px;margin:auto;padding:75px 20px}
-.section-title{text-align:center;margin-bottom:45px}
-.section-title h2{font-size:34px;color:#123b59;margin-bottom:10px}
-.section-title p{color:#6b7280}
-.intro{background:#fff}
-.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.intro h2{font-size:34px;color:#123b59;margin-bottom:20px}
-.intro p{color:#4b5563;margin-bottom:15px}
-.products{background:#f5f7fa}
-.product-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
-.product-group{background:#fff;padding:28px;border-radius:12px;border:1px solid #e5e7eb;box-shadow:0 5px 18px rgba(0,0,0,.05)}
-.product-group h3{color:#1261a0;margin-bottom:18px}
-.product-group ul{list-style:none}
-.product-group li{padding:10px 0;border-bottom:1px solid #edf0f2;font-size:15px}
-.product-group li:last-child{border-bottom:none}
-.process{background:#fff}
-.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.process-item{text-align:center;padding:25px}
-.number{width:55px;height:55px;margin:0 auto 18px;border-radius:50%;background:#1261a0;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:bold}
-.register{background:#123b59;color:#fff;text-align:center}
-.register p{max-width:700px;margin:0 auto 25px;color:#dbe8f1}
-.contact{background:#fff}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
-.contact-info{padding:20px 10px}
-.contact-info h3{font-size:32px;color:#123b59;margin-bottom:18px}
-.contact-info p{color:#4b5563;font-size:17px;margin-bottom:18px}
-.guide-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:35px;box-shadow:0 5px 18px rgba(0,0,0,.05);text-align:center}
-.guide-card h3{color:#123b59;margin-bottom:12px;font-size:25px}
-.guide-card p{color:#4b5563;margin-bottom:22px}
-footer{background:#0c293d;color:#cbd5df;text-align:center;padding:30px 20px}
+<!-- ĐĂNG KÝ TƯ VẤN - GIAO DIỆN WEBSITE -->
 
-/* Cửa sổ đăng ký tư vấn */
-.consult-modal{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.65);align-items:center;justify-content:center;padding:18px}
-.consult-modal.show{display:flex}
-.consult-box{position:relative;width:min(760px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.3);padding:22px}
-.consult-box h2{text-align:center;color:#123b59;font-size:28px;margin-bottom:4px}
-.consult-box>p{text-align:center;color:#6b7280;margin-bottom:15px}
-.consult-close{position:absolute;right:14px;top:8px;width:40px;height:40px;border:0;background:transparent;color:#555;font-size:32px;line-height:40px;cursor:pointer;border-radius:50%}
-.consult-close:hover{background:#f0f2f5}
-.consult-form-frame{width:100%;height:720px;border:0;background:#fff;border-radius:8px}
-@media(max-width:850px){
-.navbar{flex-direction:column;padding:15px}.nav-menu{flex-wrap:wrap;justify-content:center}.nav-menu>li>a{padding:10px 8px}
-.dropdown-menu{position:absolute}.hero{min-height:500px}.hero h1{font-size:38px}
-.intro-grid,.product-groups,.contact-grid{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr 1fr}
+<style>
+#consultModal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:999999;
+    background:rgba(0,0,0,.58);
+    overflow-y:auto;
+    padding:30px 15px;
 }
-@media(max-width:550px){
-.process-grid{grid-template-columns:1fr}.hero h1{font-size:32px}
-.consult-modal{padding:8px}.consult-box{padding:16px;border-radius:12px}
-.consult-form-frame{height:760px}
+
+#consultModal.show{
+    display:block;
+}
+
+.consult-container{
+    max-width:1100px;
+    margin:20px auto;
+    background:#fff;
+    border-radius:10px;
+    padding:50px;
+    position:relative;
+}
+
+.consult-close{
+    position:absolute;
+    top:12px;
+    right:18px;
+    width:40px;
+    height:40px;
+    border:0;
+    background:transparent;
+    font-size:32px;
+    color:#777;
+    cursor:pointer;
+}
+
+.consult-heading{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.consult-heading h1{
+    margin:0 0 12px;
+    color:#222;
+    font-size:38px;
+}
+
+.consult-heading p{
+    max-width:720px;
+    margin:auto;
+    color:#666;
+    font-size:16px;
+}
+
+.consult-grid{
+    display:grid;
+    grid-template-columns:1.4fr .8fr;
+    gap:60px;
+}
+
+.consult-grid h2{
+    margin:0 0 25px;
+    font-size:24px;
+    color:#222;
+}
+
+.consult-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.consult-field{
+    margin-bottom:20px;
+}
+
+.consult-field label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:600;
+    color:#333;
+}
+
+.consult-field label span{
+    color:#e00000;
+}
+
+.consult-field input,
+.consult-field select,
+.consult-field textarea{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #d5d5d5;
+    border-radius:5px;
+    font-family:inherit;
+    font-size:15px;
+    outline:none;
+    background:#fff;
+}
+
+.consult-field textarea{
+    min-height:140px;
+    resize:vertical;
+}
+
+.consult-field input:focus,
+.consult-field select:focus,
+.consult-field textarea:focus{
+    border-color:#1261a0;
+}
+
+.consult-submit{
+    padding:13px 35px;
+    border:0;
+    border-radius:5px;
+    background:#1261a0;
+    color:#fff;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.consult-submit:hover{
+    background:#0d4f85;
+}
+
+.consult-info{
+    border-left:1px solid #e5e5e5;
+    padding-left:40px;
+}
+
+.consult-info-item{
+    margin-bottom:25px;
+}
+
+.consult-info-item strong{
+    display:block;
+    margin-bottom:6px;
+    color:#222;
+}
+
+.consult-info-item p{
+    margin:0;
+    color:#666;
+    line-height:1.7;
+}
+
+.consult-success{
+    display:none;
+    margin-top:18px;
+    padding:13px;
+    background:#eaf7ee;
+    color:#18743c;
+    border-radius:5px;
+}
+
+@media(max-width:800px){
+
+    #consultModal{
+        padding:10px;
+    }
+
+    .consult-container{
+        padding:35px 20px;
+    }
+
+    .consult-grid{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .consult-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .consult-info{
+        border-left:0;
+        border-top:1px solid #e5e5e5;
+        padding-left:0;
+        padding-top:30px;
+    }
+
+    .consult-heading h1{
+        font-size:30px;
+    }
 }
 </style>
-</head>
-<body>
 
-<header>
-<nav class="navbar">
-<a href="#home" class="logo">DỊCH VỤ ĐIỆN TỬ</a>
-<ul class="nav-menu">
-<li><a href="#home">TRANG CHỦ</a></li>
-<li class="dropdown">
-<a href="#products">SẢN PHẨM ▾</a>
-<div class="dropdown-menu">
-<div class="dropdown-title">DOANH NGHIỆP</div>
-<a href="thanh-lap-doanh-nghiep.html">Thành lập mới doanh nghiệp</a>
-<a href="#products">Thay đổi nội dung giấy phép</a>
-<a href="#products">Tạm ngưng doanh nghiệp</a>
-<a href="#products">Giải thể doanh nghiệp</a>
-<a href="#products">Xin hoạt động lại doanh nghiệp</a>
-<div class="dropdown-title">GIẢI PHÁP ĐIỆN TỬ</div>
-<a href="hoa-don-dien-tu.html">Hóa đơn điện tử</a>
-<a href="chu-ky-so.html">Chữ ký số</a>
-<a href="#products">Hợp đồng điện tử</a>
-<div class="dropdown-title">KẾ TOÁN – HỒ SƠ</div>
-<a href="ke-toan-thue-tron-goi.html">Kế toán thuế trọn gói</a>
-<a href="#products">Hồ sơ doanh nghiệp</a>
-</div>
-</li>
-<li class="dropdown">
-<a href="xac-thuc-to-khai.html">HƯỚNG DẪN ▾</a>
-<div class="dropdown-menu">
-<a href="xac-thuc-to-khai.html">Xác Thực Tờ Khai 01/ĐKTĐ-HĐĐT</a>
-</div>
-</li>
-<li><a href="#cooperation">HỢP TÁC</a></li>
-<li><a href="#download">DOWNLOAD</a></li>
-<li><a class="consult-btn" href="#" onclick="openConsultForm();return false;">ĐĂNG KÝ TƯ VẤN</a></li>
-</ul>
-</nav>
-</header>
 
-<section class="hero" id="home">
-<div class="hero-content">
-<h1>Giải pháp toàn diện cho doanh nghiệp và hộ kinh doanh</h1>
-<p>Cung cấp dịch vụ doanh nghiệp, kế toán – thuế và các giải pháp điện tử, hỗ trợ khách hàng thuận tiện trong quá trình thành lập và hoạt động kinh doanh.</p>
-<div class="hero-buttons">
-<a class="btn btn-primary" href="#" onclick="openConsultForm();return false;">ĐĂNG KÝ TƯ VẤN</a>
-<a class="btn btn-secondary" href="#products">XEM SẢN PHẨM</a>
-</div>
-</div>
-</section>
+<!-- CỬA SỔ ĐĂNG KÝ TƯ VẤN -->
 
-<section class="intro">
-<div class="container intro-grid">
-<div>
-<h2>Về Dịch Vụ Điện Tử</h2>
-<p>Chúng tôi cung cấp các dịch vụ hỗ trợ doanh nghiệp, hộ kinh doanh và khách hàng trong các lĩnh vực thủ tục doanh nghiệp, kế toán – thuế và giải pháp điện tử.</p>
-<p>Mục tiêu là hỗ trợ khách hàng thực hiện các thủ tục thuận tiện, tiết kiệm thời gian và phù hợp với nhu cầu thực tế.</p>
-</div>
-<div>
-<h2>Hỗ trợ khách hàng</h2>
-<p>📞 <strong>0852 233 247</strong></p>
-<p>✉️ <strong>datbv@dichvudientu.com</strong></p>
-<p>🕐 <strong>Thời gian hỗ trợ: 24/7</strong></p>
-</div>
-</div>
-</section>
+<div id="consultModal">
 
-<section class="products" id="products">
-<div class="container">
-<div class="section-title"><h2>Sản phẩm &amp; Dịch vụ</h2><p>Các giải pháp hỗ trợ doanh nghiệp và hộ kinh doanh</p></div>
-<div class="product-groups">
-<div class="product-group"><h3>DOANH NGHIỆP</h3><ul>
-<li>Thành lập mới doanh nghiệp</li><li>Thay đổi nội dung giấy phép</li><li>Tạm ngưng doanh nghiệp</li><li>Giải thể doanh nghiệp</li><li>Xin hoạt động lại doanh nghiệp</li>
-</ul></div>
-<div class="product-group"><h3>GIẢI PHÁP ĐIỆN TỬ</h3><ul><li>Hóa đơn điện tử</li><li>Chữ ký số</li><li>Hợp đồng điện tử</li></ul></div>
-<div class="product-group"><h3>KẾ TOÁN – HỒ SƠ</h3><ul><li>Kế toán thuế trọn gói</li><li>Hồ sơ doanh nghiệp</li></ul></div>
-</div>
-</div>
-</section>
+    <div class="consult-container">
 
-<section class="process">
-<div class="container">
-<div class="section-title"><h2>Quy trình hỗ trợ</h2><p>Đơn giản – thuận tiện – nhanh chóng</p></div>
-<div class="process-grid">
-<div class="process-item"><div class="number">01</div><h3>Đăng ký</h3><p>Khách hàng gửi thông tin và nhu cầu tư vấn.</p></div>
-<div class="process-item"><div class="number">02</div><h3>Tiếp nhận</h3><p>Chúng tôi tiếp nhận và kiểm tra yêu cầu.</p></div>
-<div class="process-item"><div class="number">03</div><h3>Tư vấn</h3><p>Trao đổi và đề xuất giải pháp phù hợp.</p></div>
-<div class="process-item"><div class="number">04</div><h3>Thực hiện</h3><p>Hỗ trợ khách hàng trong quá trình thực hiện dịch vụ.</p></div>
-</div>
-</div>
-</section>
+        <button
+            class="consult-close"
+            type="button"
+            onclick="closeConsult()">
+            ×
+        </button>
 
-<section class="intro" id="guide">
-<div class="container">
-<div class="section-title"><h2>Hướng dẫn</h2><p>Hướng dẫn thao tác với hình minh họa rõ ràng.</p></div>
-<div class="guide-card">
-<h3>Xác Thực Tờ Khai 01/ĐKTĐ-HĐĐT Trên eTax Mobile</h3>
-<p>Thực hiện lần lượt 13 bước theo hình minh họa. Bấm nút bên dưới để mở trang hướng dẫn chi tiết.</p>
-<a class="btn" style="background:#1261a0;color:#fff" href="xac-thuc-to-khai.html">XEM HƯỚNG DẪN CHI TIẾT</a>
-</div>
-</div>
-</section>
 
-<section class="products" id="cooperation">
-<div class="container"><div class="section-title"><h2>Hợp tác</h2><p>Chúng tôi sẵn sàng tiếp nhận các nhu cầu hợp tác và kết nối dịch vụ.</p></div></div>
-</section>
+        <div class="consult-heading">
 
-<section class="intro" id="download">
-<div class="container"><div class="section-title"><h2>Download</h2><p>Tài liệu và biểu mẫu hỗ trợ khách hàng sẽ được cập nhật tại đây.</p></div></div>
-</section>
+            <h1>Liên hệ</h1>
 
-<section class="register">
-<div class="container">
-<h2>Đăng ký tư vấn</h2>
-<p>Bấm nút bên dưới để mở biểu mẫu ngay trên website.</p>
-<a class="btn btn-primary" href="#" onclick="openConsultForm();return false;">ĐĂNG KÝ TƯ VẤN</a>
+            <p>
+                Hãy để lại thông tin và nhu cầu của bạn.
+                Chúng tôi sẽ liên hệ tư vấn trong thời gian sớm nhất.
+            </p>
+
+        </div>
+
+
+        <div class="consult-grid">
+
+
+            <!-- FORM -->
+
+            <div>
+
+                <h2>Đăng ký tư vấn</h2>
+
+                <form id="consultForm">
+
+                    <div class="consult-row">
+
+                        <div class="consult-field">
+
+                            <label>
+                                Họ và tên <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Nhập họ và tên"
+                                required>
+
+                        </div>
+
+
+                        <div class="consult-field">
+
+                            <label>
+                                Số điện thoại <span>*</span>
+                            </label>
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                placeholder="Nhập số điện thoại"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="consult-field">
+
+                        <label>
+                            Email <span>*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Nhập email"
+                            required>
+
+                    </div>
+
+
+                    <div class="consult-field">
+
+                        <label>
+                            Tiêu đề <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="subject"
+                            value="Đăng ký tư vấn"
+                            required>
+
+                    </div>
+
+
+                    <div class="consult-field">
+
+                        <label>
+                            Sản phẩm / Dịch vụ
+                        </label>
+
+                        <select name="service">
+
+                            <option value="">
+                                -- Chọn sản phẩm / dịch vụ --
+                            </option>
+
+                            <option>Thành lập mới doanh nghiệp</option>
+                            <option>Thay đổi nội dung giấy phép</option>
+                            <option>Tạm ngưng doanh nghiệp</option>
+                            <option>Giải thể doanh nghiệp</option>
+                            <option>Xin hoạt động lại doanh nghiệp</option>
+                            <option>Hóa đơn điện tử</option>
+                            <option>Chữ ký số</option>
+                            <option>Hợp đồng điện tử</option>
+                            <option>Kế toán - Thuế trọn gói</option>
+                            <option>Hồ sơ doanh nghiệp</option>
+                            <option>Tư vấn khác</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="consult-field">
+
+                        <label>
+                            Nội dung cần tư vấn
+                        </label>
+
+                        <textarea
+                            name="message"
+                            placeholder="Nhập nội dung cần tư vấn..."></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="consult-submit">
+
+                        GỬI
+
+                    </button>
+
+
+                    <div
+                        id="consultSuccess"
+                        class="consult-success">
+
+                        Cảm ơn bạn! Thông tin đã được tiếp nhận.
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- THÔNG TIN LIÊN HỆ -->
+
+            <div class="consult-info">
+
+                <h2>THÔNG TIN LIÊN HỆ</h2>
+
+
+                <div class="consult-info-item">
+
+                    <strong>Dịch Vụ Điện Tử</strong>
+
+                    <p>
+                        Cung cấp dịch vụ kế toán - thuế,
+                        hỗ trợ doanh nghiệp và các giải pháp
+                        điện tử.
+                    </p>
+
+                </div>
+
+
+                <div class="consult-info-item">
+
+                    <strong>Điện thoại</strong>
+
+                    <p>0852 233 247</p>
+
+                </div>
+
+
+                <div class="consult-info-item">
+
+                    <strong>Email</strong>
+
+                    <p>datbv@dichvudientu.com</p>
+
+                </div>
+
+
+                <div class="consult-info-item">
+
+                    <strong>Thời gian hỗ trợ</strong>
+
+                    <p>24/7</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
-</section>
 
-<footer><p>© 2026 Dịch Vụ Điện Tử – dichvudientu.com</p></footer>
-
-<!-- FORM ĐĂNG KÝ TƯ VẤN: mở dạng cửa sổ, không chuyển sang trang khác -->
-<div id="consultModal" class="consult-modal" aria-hidden="true">
-<div class="consult-box" role="dialog" aria-modal="true" aria-labelledby="consultTitle">
-<button class="consult-close" type="button" onclick="closeConsultForm()" aria-label="Đóng">×</button>
-<h2 id="consultTitle">Đăng ký tư vấn</h2>
-<p>Vui lòng điền thông tin để chúng tôi liên hệ tư vấn.</p>
-<iframe class="consult-form-frame" title="Biểu mẫu đăng ký tư vấn" src="https://docs.google.com/forms/d/e/1FAIpQLSePXYAB94xKkPNPv6JIVbrCWLY0T-A6cRVFeXaCgW7gfqcb5Q/viewform?embedded=true"></iframe>
-</div>
-</div>
 
 <script>
-function openConsultForm(){
-  const modal=document.getElementById("consultModal");
-  modal.classList.add("show");
-  modal.setAttribute("aria-hidden","false");
-  document.body.classList.add("modal-open");
+
+function openConsult(){
+
+    document
+        .getElementById("consultModal")
+        .classList.add("show");
+
+    document.body.style.overflow="hidden";
 }
-function closeConsultForm(){
-  const modal=document.getElementById("consultModal");
-  modal.classList.remove("show");
-  modal.setAttribute("aria-hidden","true");
-  document.body.classList.remove("modal-open");
+
+
+function closeConsult(){
+
+    document
+        .getElementById("consultModal")
+        .classList.remove("show");
+
+    document.body.style.overflow="";
 }
-document.getElementById("consultModal").addEventListener("click",function(e){
-  if(e.target===this) closeConsultForm();
-});
+
+
+document
+    .getElementById("consultModal")
+    .addEventListener("click",function(e){
+
+        if(e.target === this){
+
+            closeConsult();
+
+        }
+
+    });
+
+
 document.addEventListener("keydown",function(e){
-  if(e.key==="Escape") closeConsultForm();
+
+    if(e.key === "Escape"){
+
+        closeConsult();
+
+    }
+
 });
+
+
+document
+    .getElementById("consultForm")
+    .addEventListener("submit",function(e){
+
+        e.preventDefault();
+
+        document
+            .getElementById("consultSuccess")
+            .style.display="block";
+
+    });
+
 </script>
-</body>
-</html>
