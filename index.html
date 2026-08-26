@@ -1047,5 +1047,347 @@ GỬI YÊU CẦU
 </footer>
 
 
-</body>
+<!-- ===== POPUP ĐĂNG KÝ TƯ VẤN ===== -->
+<style>
+#dvt-consult-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:999999;
+    background:rgba(8,30,48,.72);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+#dvt-consult-overlay.show{
+    display:flex;
+}
+
+#dvt-consult-popup{
+    width:100%;
+    max-width:900px;
+    max-height:92vh;
+    overflow-y:auto;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 25px 70px rgba(0,0,0,.30);
+    position:relative;
+    animation:dvtPopup .2s ease-out;
+}
+
+@keyframes dvtPopup{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+#dvt-consult-close{
+    position:absolute;
+    right:18px;
+    top:15px;
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:50%;
+    background:#eef3f7;
+    color:#123b59;
+    font-size:27px;
+    line-height:40px;
+    cursor:pointer;
+    z-index:5;
+}
+
+#dvt-consult-close:hover{
+    background:#1261a0;
+    color:#fff;
+}
+
+.dvt-popup-head{
+    background:#123b59;
+    color:#fff;
+    padding:30px 35px;
+}
+
+.dvt-popup-head h2{
+    margin:0 45px 8px 0;
+    font-size:30px;
+}
+
+.dvt-popup-head p{
+    margin:0;
+    color:#dbe8f1;
+}
+
+.dvt-popup-body{
+    display:grid;
+    grid-template-columns:1fr 1.15fr;
+    gap:35px;
+    padding:35px;
+}
+
+.dvt-popup-info h3{
+    color:#123b59;
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.dvt-popup-info p{
+    color:#4b5563;
+    margin-bottom:22px;
+}
+
+.dvt-popup-info-item{
+    display:flex;
+    gap:12px;
+    margin-bottom:16px;
+    color:#374151;
+}
+
+.dvt-popup-info-item strong{
+    color:#123b59;
+}
+
+.dvt-popup-form{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:25px;
+}
+
+.dvt-popup-form h3{
+    color:#123b59;
+    margin:0 0 18px;
+    font-size:23px;
+}
+
+.dvt-popup-form input,
+.dvt-popup-form select,
+.dvt-popup-form textarea{
+    width:100%;
+    padding:13px 14px;
+    margin-bottom:14px;
+    border:1px solid #d1d5db;
+    border-radius:7px;
+    font-family:inherit;
+    font-size:15px;
+    background:#fff;
+}
+
+.dvt-popup-form textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.dvt-popup-form input:focus,
+.dvt-popup-form select:focus,
+.dvt-popup-form textarea:focus{
+    outline:none;
+    border-color:#1261a0;
+    box-shadow:0 0 0 2px rgba(18,97,160,.10);
+}
+
+.dvt-popup-submit{
+    width:100%;
+    border:0;
+    background:#1261a0;
+    color:#fff;
+    padding:14px 20px;
+    border-radius:7px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.dvt-popup-submit:hover{
+    background:#0d4f85;
+}
+
+@media(max-width:700px){
+    #dvt-consult-popup{
+        max-height:95vh;
+    }
+
+    .dvt-popup-body{
+        grid-template-columns:1fr;
+        padding:22px;
+        gap:20px;
+    }
+
+    .dvt-popup-head{
+        padding:25px 22px;
+    }
+
+    .dvt-popup-head h2{
+        font-size:25px;
+    }
+}
+</style>
+
+<div id="dvt-consult-overlay">
+    <div id="dvt-consult-popup">
+
+        <button id="dvt-consult-close" type="button" aria-label="Đóng">
+            ×
+        </button>
+
+        <div class="dvt-popup-head">
+            <h2>Đăng ký tư vấn</h2>
+            <p>
+                Vui lòng để lại thông tin, chúng tôi sẽ liên hệ tư vấn
+                dịch vụ phù hợp với nhu cầu của bạn.
+            </p>
+        </div>
+
+        <div class="dvt-popup-body">
+
+            <div class="dvt-popup-info">
+
+                <h3>DỊCH VỤ ĐIỆN TỬ</h3>
+
+                <p>
+                    Hãy để lại thông tin và nhu cầu của bạn.
+                    Đội ngũ hỗ trợ sẽ liên hệ tư vấn trong thời gian sớm nhất.
+                </p>
+
+                <div class="dvt-popup-info-item">
+                    <span>📞</span>
+                    <div>
+                        <strong>Điện thoại</strong><br>
+                        0852 233 247
+                    </div>
+                </div>
+
+                <div class="dvt-popup-info-item">
+                    <span>✉️</span>
+                    <div>
+                        <strong>Email</strong><br>
+                        datbv@dichvudientu.com
+                    </div>
+                </div>
+
+                <div class="dvt-popup-info-item">
+                    <span>🕐</span>
+                    <div>
+                        <strong>Thời gian hỗ trợ</strong><br>
+                        24/7
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="dvt-popup-form">
+
+                <h3>Thông tin tư vấn</h3>
+
+                <form id="dvt-popup-form">
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Họ và tên *"
+                        required
+                    >
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Số điện thoại *"
+                        required
+                    >
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                    >
+
+                    <select name="service">
+                        <option value="">
+                            Bạn cần tư vấn về dịch vụ nào?
+                        </option>
+                        <option>Thành lập doanh nghiệp</option>
+                        <option>Thay đổi nội dung giấy phép</option>
+                        <option>Tạm ngưng doanh nghiệp</option>
+                        <option>Giải thể doanh nghiệp</option>
+                        <option>Hóa đơn điện tử</option>
+                        <option>Chữ ký số</option>
+                        <option>Hợp đồng điện tử</option>
+                        <option>Kế toán – Thuế trọn gói</option>
+                        <option>Hồ sơ doanh nghiệp</option>
+                        <option>Dịch vụ khác</option>
+                    </select>
+
+                    <textarea
+                        name="message"
+                        placeholder="Nội dung cần tư vấn"
+                    ></textarea>
+
+                    <button
+                        type="submit"
+                        class="dvt-popup-submit">
+                        GỬI YÊU CẦU
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+(function(){
+
+    const overlay = document.getElementById('dvt-consult-overlay');
+    const closeBtn = document.getElementById('dvt-consult-close');
+    const popupForm = document.getElementById('dvt-popup-form');
+
+    function openConsultPopup(e){
+        if(e) e.preventDefault();
+
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeConsultPopup(){
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('a[href="#contact"]').forEach(function(link){
+        link.addEventListener('click', openConsultPopup);
+    });
+
+    closeBtn.addEventListener('click', closeConsultPopup);
+
+    overlay.addEventListener('click', function(e){
+        if(e.target === overlay){
+            closeConsultPopup();
+        }
+    });
+
+    document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+            closeConsultPopup();
+        }
+    });
+
+    popupForm.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        alert('Cảm ơn bạn! Dịch Vụ Điện Tử đã nhận được thông tin đăng ký tư vấn.');
+
+        popupForm.reset();
+        closeConsultPopup();
+    });
+
+})();
+</script></body>
 </html>
