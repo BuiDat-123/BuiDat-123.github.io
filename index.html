@@ -1,166 +1,169 @@
-<!-- DÁN TOÀN BỘ ĐOẠN NÀY VÀO CUỐI TRANG, TRƯỚC </body> -->
-
 <style>
-#tuvanOverlay{
+/* ===== FORM ĐĂNG KÝ TƯ VẤN MỚI ===== */
+#dvdt-tu-van{
   display:none;
   position:fixed;
   inset:0;
-  z-index:999999;
-  background:rgba(0,0,0,.45);
+  z-index:2147483647;
+  background:rgba(0,0,0,.55);
   overflow-y:auto;
-  padding:40px 20px;
+  padding:50px 15px;
   box-sizing:border-box;
 }
-#tuvanBox{
+
+#dvdt-tu-van-box{
+  position:relative;
   width:100%;
-  max-width:760px;
+  max-width:950px;
   margin:auto;
   background:#fff;
-  border-radius:4px;
-  padding:32px 38px 38px;
+  border-radius:6px;
+  padding:35px 46px 42px;
   box-sizing:border-box;
-  position:relative;
-  box-shadow:0 10px 40px rgba(0,0,0,.2);
+  box-shadow:0 10px 40px rgba(0,0,0,.25);
   font-family:Arial,sans-serif;
 }
-#tuvanClose{
+
+#dvdt-tu-van-close{
   position:absolute;
-  right:18px;
-  top:12px;
+  right:22px;
+  top:16px;
   border:0;
   background:none;
-  font-size:30px;
-  color:#777;
+  font-size:32px;
+  line-height:1;
+  color:#555;
   cursor:pointer;
 }
-#tuvanBox .tuvanIntro{
-  color:#555;
-  font-size:15px;
-  line-height:1.7;
-  margin-bottom:28px;
+
+#dvdt-tu-van-title{
+  text-align:center;
+  font-size:34px;
+  font-weight:700;
+  color:#003b63;
+  margin:0 0 14px;
 }
-.tuvanRow{
-  display:flex;
-  align-items:center;
-  margin-bottom:16px;
+
+#dvdt-tu-van-desc{
+  text-align:center;
+  color:#666;
+  font-size:18px;
+  margin-bottom:32px;
 }
-.tuvanRow label{
-  width:200px;
-  flex-shrink:0;
-  font-weight:bold;
-  font-size:16px;
+
+.dvdt-field{
+  margin-bottom:20px;
+}
+
+.dvdt-field label{
+  display:block;
+  font-weight:700;
   color:#111;
+  font-size:16px;
+  margin-bottom:8px;
 }
-.tuvanRow input,
-.tuvanRow select,
-.tuvanRow textarea{
+
+.dvdt-field input,
+.dvdt-field select,
+.dvdt-field textarea{
   width:100%;
-  max-width:330px;
   box-sizing:border-box;
-  border:1px solid #d8d8d8;
-  border-radius:6px;
-  padding:12px;
-  font-size:15px;
-  outline:none;
+  border:1px solid #d5d5d5;
+  border-radius:5px;
+  padding:13px 14px;
+  font-size:16px;
   background:#fff;
+  color:#222;
+  outline:none;
 }
-.tuvanRow textarea{
-  height:82px;
+
+.dvdt-field input:focus,
+.dvdt-field select:focus,
+.dvdt-field textarea:focus{
+  border-color:#0b4f7c;
+}
+
+.dvdt-field textarea{
+  height:110px;
   resize:vertical;
 }
-.tuvanFull{
-  display:flex;
-  align-items:center;
-  margin-bottom:16px;
-}
-.tuvanFull label{
-  width:200px;
-  flex-shrink:0;
-  font-weight:bold;
-  font-size:16px;
-}
-.tuvanFull select{
-  width:100%;
-  border:1px solid #d8d8d8;
-  border-radius:6px;
-  padding:13px;
-  font-size:15px;
-}
-#tuvanSubmit{
-  margin-left:200px;
+
+#dvdt-tu-van-submit{
   background:#ed1c24;
   color:#fff;
   border:0;
   border-radius:6px;
-  padding:11px 18px;
-  font-size:15px;
+  padding:12px 25px;
+  font-size:16px;
   cursor:pointer;
 }
-#tuvanSubmit:hover{
-  background:#d9151c;
+
+#dvdt-tu-van-submit:hover{
+  background:#d71920;
 }
+
 @media(max-width:600px){
-  #tuvanOverlay{padding:15px;}
-  #tuvanBox{padding:28px 20px;}
-  .tuvanRow,
-  .tuvanFull{
-    display:block;
+  #dvdt-tu-van{
+    padding:15px;
   }
-  .tuvanRow label,
-  .tuvanFull label{
-    display:block;
-    width:100%;
-    margin-bottom:7px;
+
+  #dvdt-tu-van-box{
+    padding:28px 20px 30px;
   }
-  .tuvanRow input,
-  .tuvanRow select,
-  .tuvanRow textarea,
-  .tuvanFull select{
-    max-width:none;
+
+  #dvdt-tu-van-title{
+    font-size:27px;
   }
-  #tuvanSubmit{
-    margin-left:0;
+
+  #dvdt-tu-van-desc{
+    font-size:16px;
   }
 }
 </style>
 
-<div id="tuvanOverlay">
-  <div id="tuvanBox">
-    <button id="tuvanClose">&times;</button>
 
-    <div class="tuvanIntro">
-      Hãy liên hệ khi bạn gặp bất cứ vấn đề nào liên quan đến công ty hoặc dịch vụ của chúng tôi.<br>
-      Chúng tôi sẽ cố gắng phản hồi trong thời gian sớm nhất.
+<!-- FORM MỚI -->
+<div id="dvdt-tu-van">
+
+  <div id="dvdt-tu-van-box">
+
+    <button type="button" id="dvdt-tu-van-close">×</button>
+
+    <h2 id="dvdt-tu-van-title">Đăng ký tư vấn</h2>
+
+    <div id="dvdt-tu-van-desc">
+      Vui lòng điền thông tin để chúng tôi liên hệ tư vấn.
     </div>
 
-    <form id="tuvanForm">
+    <form id="dvdt-tu-van-form">
 
-      <div class="tuvanRow">
+      <div class="dvdt-field">
         <label>Tên *</label>
         <input type="text" name="name" required>
       </div>
 
-      <div class="tuvanRow">
+      <div class="dvdt-field">
         <label>Số điện thoại</label>
         <input type="tel" name="phone">
       </div>
 
-      <div class="tuvanRow">
+      <div class="dvdt-field">
         <label>Email *</label>
         <input type="email" name="email" required>
       </div>
 
-      <div class="tuvanRow">
+      <div class="dvdt-field">
         <label>Tiêu đề *</label>
         <input type="text" name="subject" value="Liên hệ" required>
       </div>
 
-      <div class="tuvanFull">
+      <div class="dvdt-field">
         <label>Sản phẩm/Dịch vụ</label>
         <select name="service">
           <option>Dịch vụ rủi ro về thuế</option>
           <option>Kế toán - Thuế trọn gói</option>
           <option>Tư vấn thuế</option>
+          <option>Hỗ trợ dịch vụ điện tử</option>
           <option>Hóa đơn điện tử</option>
           <option>Chữ ký số</option>
           <option>Thành lập doanh nghiệp</option>
@@ -174,76 +177,160 @@
         </select>
       </div>
 
-      <div class="tuvanRow">
+      <div class="dvdt-field">
         <label>Mô tả chi tiết</label>
         <textarea name="message"></textarea>
       </div>
 
-      <button type="submit" id="tuvanSubmit">Gửi</button>
+      <button type="submit" id="dvdt-tu-van-submit">Gửi</button>
 
     </form>
+
   </div>
 </div>
+
 
 <script>
 (function(){
 
-  function moFormTuVan(e){
-    if(e) e.preventDefault();
-    document.getElementById("tuvanOverlay").style.display="block";
-    document.body.style.overflow="hidden";
+  var formBox = document.getElementById("dvdt-tu-van");
+  var closeBtn = document.getElementById("dvdt-tu-van-close");
+
+  function openForm(){
+    /* Đóng toàn bộ Google Form / modal cũ */
+    document.querySelectorAll(
+      'iframe[src*="docs.google.com/forms"], iframe[src*="google.com/forms"]'
+    ).forEach(function(iframe){
+      var parent = iframe.parentElement;
+      if(parent) parent.style.display = "none";
+      iframe.style.display = "none";
+    });
+
+    /* Ẩn các modal cũ đang chứa Google Form */
+    document.querySelectorAll(
+      '.modal, [role="dialog"], .popup, .modal-backdrop'
+    ).forEach(function(el){
+      if(el !== formBox && !formBox.contains(el)){
+        var hasGoogleForm =
+          el.querySelector &&
+          el.querySelector('iframe[src*="google.com/forms"]');
+
+        if(hasGoogleForm){
+          el.style.display = "none";
+          el.classList.remove("show");
+        }
+      }
+    });
+
+    formBox.style.display = "block";
+    document.body.style.overflow = "hidden";
   }
 
-  function dongFormTuVan(){
-    document.getElementById("tuvanOverlay").style.display="none";
-    document.body.style.overflow="";
+  function closeForm(){
+    formBox.style.display = "none";
+    document.body.style.overflow = "";
   }
 
-  /*
-   * TỰ ĐỘNG CHẶN LINK "ĐĂNG KÝ TƯ VẤN"
-   * Không cho chuyển sang trang tính nữa.
-   */
-  document.addEventListener("click",function(e){
+  closeBtn.addEventListener("click", closeForm);
 
-    var el=e.target.closest("a,button");
-
-    if(!el) return;
-
-    var text=(el.innerText || el.textContent || "").trim().toLowerCase();
-
-    if(
-      text.indexOf("đăng ký tư vấn") !== -1 ||
-      text.indexOf("dang ky tu van") !== -1
-    ){
-      e.preventDefault();
-      e.stopPropagation();
-      moFormTuVan(e);
-    }
-
-  },true);
-
-  document.getElementById("tuvanClose").onclick=dongFormTuVan;
-
-  document.getElementById("tuvanOverlay").onclick=function(e){
-    if(e.target===this){
-      dongFormTuVan();
-    }
-  };
-
-  document.addEventListener("keydown",function(e){
-    if(e.key==="Escape"){
-      dongFormTuVan();
+  formBox.addEventListener("click", function(e){
+    if(e.target === formBox){
+      closeForm();
     }
   });
 
-  document.getElementById("tuvanForm").addEventListener("submit",function(e){
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      closeForm();
+    }
+  });
+
+  /*
+   * CHẶN NÚT "ĐĂNG KÝ TƯ VẤN"
+   * Không cho chạy Google Form cũ
+   */
+  document.addEventListener("click", function(e){
+
+    var el = e.target.closest("a,button");
+
+    if(!el) return;
+
+    var text = (
+      el.innerText ||
+      el.textContent ||
+      el.getAttribute("aria-label") ||
+      ""
+    ).trim().toLowerCase();
+
+    if(
+      text.includes("đăng ký tư vấn") ||
+      text.includes("dang ky tu van") ||
+      text.includes("đăng kí tư vấn") ||
+      text.includes("dang ki tu van")
+    ){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      openForm();
+      return false;
+    }
+
+  }, true);
+
+
+  /*
+   * NẾU WEBSITE TỰ ĐỘNG MỞ GOOGLE FORM,
+   * TỰ ĐỘNG ĐÓNG NÓ VÀ HIỆN FORM MỚI.
+   */
+  var observer = new MutationObserver(function(){
+
+    var googleForm = document.querySelector(
+      'iframe[src*="docs.google.com/forms"], iframe[src*="google.com/forms"]'
+    );
+
+    if(googleForm && formBox.style.display !== "block"){
+
+      var modal = googleForm.closest(
+        '.modal, [role="dialog"], .popup'
+      );
+
+      if(modal){
+        modal.style.display = "none";
+        modal.classList.remove("show");
+      }
+
+      googleForm.style.display = "none";
+
+      openForm();
+    }
+
+  });
+
+  observer.observe(document.body,{
+    childList:true,
+    subtree:true,
+    attributes:true
+  });
+
+
+  /*
+   * FORM GỬI
+   */
+  document.getElementById("dvdt-tu-van-form")
+  .addEventListener("submit",function(e){
+
     e.preventDefault();
 
-    alert("Thông tin của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ lại sớm nhất.");
+    alert(
+      "Đã nhận thông tin đăng ký tư vấn.\n" +
+      "Chúng tôi sẽ liên hệ lại với bạn sớm nhất."
+    );
 
     this.reset();
-    document.querySelector('#tuvanForm input[name="subject"]').value="Liên hệ";
-    dongFormTuVan();
+
+    this.querySelector('[name="subject"]').value = "Liên hệ";
+
+    closeForm();
+
   });
 
 })();
