@@ -666,3 +666,377 @@ iframe[src*="google.com/forms"]{
 
 })();
 </script>
+<style>
+/* =====================================================
+   DICHVUDIENTU - SỬA POPUP ĐĂNG KÝ TƯ VẤN
+   ===================================================== */
+
+#dvdt-contact-popup{
+    display:none !important;
+    position:fixed !important;
+    inset:0 !important;
+    z-index:999999999 !important;
+    background:rgba(0,0,0,.55) !important;
+    overflow-y:auto !important;
+    padding:30px 15px !important;
+    box-sizing:border-box !important;
+}
+
+#dvdt-contact-popup.active{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:flex-start !important;
+}
+
+#dvdt-contact-popup > .dvdt-contact-box{
+    width:1100px !important;
+    max-width:100% !important;
+    margin:20px auto !important;
+    background:#fff !important;
+    position:relative !important;
+    box-shadow:0 15px 60px rgba(0,0,0,.3) !important;
+    overflow:hidden !important;
+}
+
+#dvdt-contact-close{
+    position:absolute !important;
+    top:18px !important;
+    right:20px !important;
+    z-index:999 !important;
+    width:42px !important;
+    height:42px !important;
+    border:0 !important;
+    border-radius:50% !important;
+    background:#ed1c24 !important;
+    color:#fff !important;
+    font-size:30px !important;
+    cursor:pointer !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-banner{
+    height:150px !important;
+    min-height:150px !important;
+    background:#063b63 !important;
+    display:flex !important;
+    align-items:center !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-banner-inner{
+    width:100% !important;
+    padding:0 50px !important;
+    box-sizing:border-box !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-banner h1{
+    margin:0 !important;
+    color:#fff !important;
+    font-size:40px !important;
+    font-weight:400 !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-content{
+    width:100% !important;
+    max-width:1100px !important;
+    margin:auto !important;
+    padding:50px !important;
+    display:grid !important;
+    grid-template-columns:330px 1fr !important;
+    gap:70px !important;
+    box-sizing:border-box !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-left h3{
+    margin:0 0 25px !important;
+    color:#666 !important;
+    font-size:23px !important;
+    font-weight:400 !important;
+}
+
+#dvdt-contact-popup .dvdt-company{
+    margin-bottom:25px !important;
+    color:#555 !important;
+    font-size:24px !important;
+    font-weight:600 !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-info{
+    color:#333 !important;
+    font-size:16px !important;
+    line-height:1.9 !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-info div{
+    margin-bottom:10px !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-info strong{
+    color:#063b63 !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-info a{
+    color:#063b63 !important;
+    text-decoration:none !important;
+}
+
+#dvdt-contact-popup .dvdt-contact-right > p{
+    margin:0 0 25px !important;
+    color:#666 !important;
+    font-size:16px !important;
+    line-height:1.7 !important;
+}
+
+#dvdt-contact-popup .dvdt-form-row{
+    display:grid !important;
+    grid-template-columns:150px 1fr !important;
+    align-items:center !important;
+    margin-bottom:16px !important;
+}
+
+#dvdt-contact-popup .dvdt-form-row label{
+    color:#111 !important;
+    font-size:16px !important;
+    font-weight:700 !important;
+}
+
+#dvdt-contact-popup .dvdt-form-row input,
+#dvdt-contact-popup .dvdt-form-row textarea,
+#dvdt-contact-popup .dvdt-form-row select{
+    width:100% !important;
+    box-sizing:border-box !important;
+    border:1px solid #d8d8d8 !important;
+    border-radius:5px !important;
+    background:#fff !important;
+    color:#555 !important;
+    font-size:16px !important;
+    outline:none !important;
+}
+
+#dvdt-contact-popup .dvdt-form-row input{
+    height:52px !important;
+    padding:0 12px !important;
+}
+
+#dvdt-contact-popup .dvdt-form-row textarea{
+    height:105px !important;
+    padding:12px !important;
+    resize:vertical !important;
+}
+
+#dvdt-contact-popup .dvdt-form-full{
+    margin-bottom:16px !important;
+}
+
+#dvdt-contact-popup .dvdt-form-full label{
+    display:block !important;
+    margin-bottom:8px !important;
+    color:#111 !important;
+    font-size:16px !important;
+    font-weight:700 !important;
+}
+
+#dvdt-contact-popup .dvdt-form-full select{
+    width:100% !important;
+    height:52px !important;
+    padding:0 12px !important;
+}
+
+#dvdt-contact-submit{
+    margin-left:150px !important;
+    border:0 !important;
+    background:#ed1c24 !important;
+    color:#fff !important;
+    border-radius:5px !important;
+    padding:13px 28px !important;
+    font-size:16px !important;
+    cursor:pointer !important;
+}
+
+#dvdt-contact-submit:hover{
+    background:#c9151c !important;
+}
+
+/* Không cho Google Form cũ xuất hiện */
+iframe[src*="docs.google.com/forms"],
+iframe[src*="google.com/forms"]{
+    display:none !important;
+}
+
+/* Điện thoại */
+@media(max-width:850px){
+
+    #dvdt-contact-popup{
+        padding:0 !important;
+    }
+
+    #dvdt-contact-popup > .dvdt-contact-box{
+        width:100% !important;
+        margin:0 !important;
+        min-height:100vh !important;
+    }
+
+    #dvdt-contact-popup .dvdt-contact-banner{
+        height:120px !important;
+        min-height:120px !important;
+    }
+
+    #dvdt-contact-popup .dvdt-contact-banner-inner{
+        padding:0 25px !important;
+    }
+
+    #dvdt-contact-popup .dvdt-contact-banner h1{
+        font-size:30px !important;
+    }
+
+    #dvdt-contact-popup .dvdt-contact-content{
+        grid-template-columns:1fr !important;
+        gap:35px !important;
+        padding:35px 25px 50px !important;
+    }
+
+    #dvdt-contact-popup .dvdt-form-row{
+        display:block !important;
+    }
+
+    #dvdt-contact-popup .dvdt-form-row label{
+        display:block !important;
+        margin-bottom:7px !important;
+    }
+
+    #dvdt-contact-submit{
+        margin-left:0 !important;
+    }
+}
+</style>
+
+<script>
+(function(){
+
+    /* Bắt nút Đăng ký tư vấn */
+    document.addEventListener("click",function(e){
+
+        var btn=e.target.closest("a,button");
+
+        if(!btn) return;
+
+        var text=(
+            btn.innerText ||
+            btn.textContent ||
+            ""
+        ).trim().toLowerCase();
+
+        if(
+            text.indexOf("đăng ký tư vấn")!==-1 ||
+            text.indexOf("đăng kí tư vấn")!==-1 ||
+            text.indexOf("dang ky tu van")!==-1
+        ){
+
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+
+            var popup=document.getElementById(
+                "dvdt-contact-popup"
+            );
+
+            if(popup){
+
+                popup.classList.add("active");
+
+                document.body.style.overflow="hidden";
+
+            }
+
+            return false;
+        }
+
+    },true);
+
+
+    /* Đóng bằng X */
+    document.addEventListener("click",function(e){
+
+        if(e.target.id==="dvdt-contact-close"){
+
+            var popup=document.getElementById(
+                "dvdt-contact-popup"
+            );
+
+            if(popup){
+                popup.classList.remove("active");
+            }
+
+            document.body.style.overflow="";
+
+        }
+
+    },true);
+
+
+    /* Đóng bằng ESC */
+    document.addEventListener("keydown",function(e){
+
+        if(e.key==="Escape"){
+
+            var popup=document.getElementById(
+                "dvdt-contact-popup"
+            );
+
+            if(popup){
+                popup.classList.remove("active");
+            }
+
+            document.body.style.overflow="";
+
+        }
+
+    });
+
+
+    /* Đóng khi bấm nền tối */
+    document.addEventListener("click",function(e){
+
+        var popup=document.getElementById(
+            "dvdt-contact-popup"
+        );
+
+        if(
+            popup &&
+            e.target===popup
+        ){
+
+            popup.classList.remove("active");
+
+            document.body.style.overflow="";
+
+        }
+
+    });
+
+
+    /* Không cho form cũ chuyển trang */
+    document.addEventListener("submit",function(e){
+
+        if(
+            e.target &&
+            e.target.id==="dvdt-consult-form"
+        ){
+
+            e.preventDefault();
+
+            var form=e.target;
+
+            var oldMessage=document.getElementById(
+                "dvdt-contact-message"
+            );
+
+            if(oldMessage){
+                oldMessage.style.display="block";
+            }
+
+            return false;
+        }
+
+    },true);
+
+})();
+</script>
