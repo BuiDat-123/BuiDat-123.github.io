@@ -104,11 +104,9 @@ footer {
             thực hiện các giao dịch điện tử.
         </p>
 
-        <a class="button"
-           href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSePXYAB94xKkPNPv6JIVbrCWLY0T-A6cRVFeXaCgW7gfqcb5Q/viewform"
-           target="_blank">
-           Đăng ký tư vấn
-        </a>
+        <button type="button" class="button" onclick="openConsultationModal()">
+  ĐĂNG KÝ TƯ VẤN
+</button>
 
     </div>
 
@@ -118,5 +116,313 @@ footer {
     © 2026 Dịch Vụ Điện Tử - dichvudientu.com
 </footer>
 
-</body>
+<!-- POPUP ĐĂNG KÝ TƯ VẤN - CHỮ KÝ SỐ -->
+
+<div id="consultationModal" class="consultation-overlay">
+
+  <div class="consultation-modal">
+
+    <button type="button"
+            class="consultation-close"
+            onclick="closeConsultationModal()">
+      &times;
+    </button>
+
+    <div class="consultation-header">
+      <h2>Đăng ký tư vấn</h2>
+
+      <p>
+        Vui lòng để lại thông tin, chúng tôi sẽ liên hệ tư vấn sớm nhất.
+      </p>
+    </div>
+
+    <form id="consultationForm" onsubmit="submitConsultation(event)">
+
+      <div class="consultation-field">
+        <label>Họ và tên <span>*</span></label>
+
+        <input
+          type="text"
+          id="consultationName"
+          placeholder="Nhập họ và tên"
+          required>
+      </div>
+
+
+      <div class="consultation-field">
+        <label>Số điện thoại <span>*</span></label>
+
+        <input
+          type="tel"
+          id="consultationPhone"
+          placeholder="Nhập số điện thoại"
+          required>
+      </div>
+
+
+      <div class="consultation-field">
+        <label>Email</label>
+
+        <input
+          type="email"
+          id="consultationEmail"
+          placeholder="Nhập email">
+      </div>
+
+
+      <div class="consultation-field">
+        <label>Dịch vụ</label>
+
+        <input
+          type="text"
+          value="Chữ ký số"
+          readonly>
+      </div>
+
+
+      <div class="consultation-field">
+        <label>Nội dung cần tư vấn</label>
+
+        <textarea
+          id="consultationMessage"
+          rows="4"
+          placeholder="Nhập nội dung bạn cần tư vấn"></textarea>
+      </div>
+
+
+      <button type="submit" class="consultation-submit">
+        GỬI ĐĂNG KÝ
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<style>
+
+.consultation-overlay {
+  display: none;
+  position: fixed;
+  z-index: 999999;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.consultation-overlay.active {
+  display: flex;
+}
+
+.consultation-modal {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+.consultation-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  background: transparent;
+  color: #555;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.consultation-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.consultation-header h2 {
+  margin-bottom: 8px;
+  color: #123b78;
+}
+
+.consultation-header p {
+  color: #666;
+  font-size: 15px;
+}
+
+.consultation-field {
+  margin-bottom: 17px;
+}
+
+.consultation-field label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #333;
+}
+
+.consultation-field label span {
+  color: #d00000;
+}
+
+.consultation-field input,
+.consultation-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d7dce2;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+}
+
+.consultation-field input:focus,
+.consultation-field textarea:focus {
+  border-color: #2463b3;
+  box-shadow: 0 0 0 3px rgba(36,99,179,0.1);
+}
+
+.consultation-field input[readonly] {
+  background: #f5f6f8;
+  color: #555;
+}
+
+.consultation-submit {
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  padding: 14px 20px;
+  background: #123b78;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.consultation-submit:hover {
+  background: #0d2f62;
+}
+
+body.consultation-open {
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+
+  .consultation-modal {
+    padding: 25px 18px;
+  }
+
+}
+
+</style>
+
+
+<script>
+
+function openConsultationModal() {
+
+  const modal = document.getElementById("consultationModal");
+
+  if (modal) {
+
+    modal.classList.add("active");
+
+    document.body.classList.add("consultation-open");
+
+    setTimeout(function() {
+
+      const input =
+        document.getElementById("consultationName");
+
+      if (input) {
+        input.focus();
+      }
+
+    }, 100);
+
+  }
+
+}
+
+
+function closeConsultationModal() {
+
+  const modal =
+    document.getElementById("consultationModal");
+
+  if (modal) {
+
+    modal.classList.remove("active");
+
+    document.body.classList.remove("consultation-open");
+
+  }
+
+}
+
+
+document.addEventListener("click", function(event) {
+
+  const modal =
+    document.getElementById("consultationModal");
+
+  if (modal && event.target === modal) {
+
+    closeConsultationModal();
+
+  }
+
+});
+
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+
+    closeConsultationModal();
+
+  }
+
+});
+
+
+function submitConsultation(event) {
+
+  event.preventDefault();
+
+  const name =
+    document.getElementById("consultationName").value.trim();
+
+  const phone =
+    document.getElementById("consultationPhone").value.trim();
+
+  if (!name || !phone) {
+
+    alert("Vui lòng nhập Họ và tên và Số điện thoại.");
+
+    return;
+
+  }
+
+  alert(
+    "Đã nhận thông tin đăng ký tư vấn.\n\n" +
+    "Chúng tôi sẽ liên hệ với bạn sớm nhất."
+  );
+
+  document.getElementById("consultationForm").reset();
+
+  closeConsultationModal();
+
+}
+
+</script></body>
 </html>
